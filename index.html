@@ -2,26 +2,25 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For Malshi ❤️</title>
-
+<title>Valentine 💖</title>
 <style>
 body {
     height: 100vh;
-    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: background: url('https://imgur.com/QQJsgRd') no-repeat center center fixed;
-background-size: cover;
+    background: url('https://i.imgur.com/QQJsgRd.jpg') no-repeat center center fixed;
+    background-size: cover;
     font-family: Arial, sans-serif;
     text-align: center;
+    color: white;
 }
 
 h1 {
     font-size: 2.2rem;
     margin-bottom: 20px;
-    color: white;
+    text-shadow: 2px 2px 5px #000;
 }
 
 button {
@@ -34,64 +33,56 @@ button {
 }
 
 #yes {
-    background: #ff0033;
+    background: #ff2e63;
     color: white;
 }
 
 #no {
-    background: #444;
+    background: #555;
     color: white;
     position: absolute;
 }
 
-#finalImg {
-    width: 240px;
-    border-radius: 18px;
+img {
+    width: 260px;
     display: none;
-    margin-top: 15px;
-    box-shadow: 0 0 15px rgba(255,255,255,0.6);
+    margin-top: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px #ff2e63;
 }
 
-/* Floating hearts */
+/* Hearts animation container */
 .heart {
-    position: absolute;
-    color: rgba(255,255,255,0.8);
-    font-size: 20px;
-    animation: floatUp 6s linear infinite;
+    position: fixed;
+    font-size: 24px;
+    animation: float 3s linear infinite;
+    pointer-events: none;
 }
 
-@keyframes floatUp {
-    0% {
-        transform: translateY(100vh) scale(0.8);
-        opacity: 0;
-    }
-    20% { opacity: 1; }
-    100% {
-        transform: translateY(-10vh) scale(1.4);
-        opacity: 0;
-    }
+@keyframes float {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-600px) scale(1.5); opacity: 0; }
 }
 </style>
 </head>
 
 <body>
 
-<h1 id="question">Hi Malshi 😊 Can I ask you something?</h1>
+<h1 id="question">Do you like surprises? 😊</h1>
 
 <div>
     <button id="yes" onclick="nextQuestion()">Yes 💕</button>
     <button id="no" onmouseover="moveNo()">No 😏</button>
 </div>
 
-<img id="finalImg" src="https://imgur.com/a/pcBZws6">
+<img id="finalImg" src="https://i.imgur.com/X0dXYeV.jpg">
 
 <script>
 let questions = [
-    "Hi Malshi 😊 Can I ask you something?",
-    "Do you know how special you are to me? 💖",
-    "Do you like spending time with me, Malshi? 🥰",
-    "Can I make you smile every day? 😌",
-    "Will you be my Valentine, Malshi? ❤️"
+    "Do you like surprises? 😊",
+    "Do you enjoy spending time with me? 🥰",
+    "Can I steal your heart forever? 💘",
+    "Will you be my Valentine? ❤️"
 ];
 
 let index = 0;
@@ -118,18 +109,20 @@ function moveNo() {
     noBtn.style.top = y + "px";
 }
 
-/* Heart animation */
+// Heart animation
 function startHearts() {
     setInterval(() => {
-        const heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = "❤️";
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = (16 + Math.random() * 20) + "px";
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.color = 'red';
+        heart.innerText = '💖';
         document.body.appendChild(heart);
 
-        setTimeout(() => heart.remove(), 6000);
-    }, 300);
+        setTimeout(() => {
+            heart.remove();
+        }, 3000);
+    }, 200);
 }
 </script>
 
