@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Malshi ❤️</title>
+
+<style>
+body {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(135deg, #ff4e8b, #ff85a2);
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    color: white;
+}
+
+button {
+    padding: 14px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 12px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+#yes {
+    background: #ff0033;
+    color: white;
+}
+
+#no {
+    background: #444;
+    color: white;
+    position: absolute;
+}
+
+#finalImg {
+    width: 240px;
+    border-radius: 18px;
+    display: none;
+    margin-top: 15px;
+    box-shadow: 0 0 15px rgba(255,255,255,0.6);
+}
+
+/* Floating hearts */
+.heart {
+    position: absolute;
+    color: rgba(255,255,255,0.8);
+    font-size: 20px;
+    animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) scale(0.8);
+        opacity: 0;
+    }
+    20% { opacity: 1; }
+    100% {
+        transform: translateY(-10vh) scale(1.4);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="question">Hi Malshi 😊 Can I ask you something?</h1>
+
+<div>
+    <button id="yes" onclick="nextQuestion()">Yes 💕</button>
+    <button id="no" onmouseover="moveNo()">No 😏</button>
+</div>
+
+<img id="finalImg" src="https://imgur.com/N5hW1ZF">
+
+<script>
+let questions = [
+    "Hi Malshi 😊 Can I ask you something?",
+    "Do you know how special you are to me? 💖",
+    "Do you like spending time with me, Malshi? 🥰",
+    "Can I make you smile every day? 😌",
+    "Will you be my Valentine, Malshi? ❤️"
+];
+
+let index = 0;
+
+function nextQuestion() {
+    index++;
+    if (index < questions.length) {
+        document.getElementById("question").innerText = questions[index];
+    } else {
+        document.getElementById("question").innerText =
+            "Yay!! Malshi said YES 😍💖\n\nForever yours,\nUditha ❤️";
+
+        document.getElementById("finalImg").style.display = "block";
+        document.getElementById("yes").style.display = "none";
+        document.getElementById("no").style.display = "none";
+
+        startHearts();
+    }
+}
+
+function moveNo() {
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 120);
+    const noBtn = document.getElementById("no");
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+}
+
+/* Heart animation */
+function startHearts() {
+    setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (16 + Math.random() * 20) + "px";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 6000);
+    }, 300);
+}
+</script>
+
+</body>
+</html>
